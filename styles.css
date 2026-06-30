@@ -282,6 +282,7 @@ button {
 .section-band,
 .section-pad {
   position: relative;
+  scroll-margin-top: calc(var(--header) + 24px);
 }
 
 .section-pad {
@@ -669,7 +670,9 @@ button {
   position: relative;
   display: grid;
   grid-template-columns: 37% minmax(0, 1fr);
-  gap: clamp(28px, 6vw, 92px);
+  row-gap: 12px;
+  column-gap: clamp(28px, 6vw, 92px);
+  align-items: start;
   padding: 34px 0 34px;
   border-bottom: 1px solid rgba(151, 222, 255, .12);
 }
@@ -715,6 +718,10 @@ button {
 .timeline-item h3,
 .project-card h3 {
   font-size: clamp(24px, 2.4vw, 34px);
+}
+
+.timeline-item h3 {
+  grid-column: 2;
 }
 
 .timeline-item p,
@@ -860,7 +867,7 @@ button {
 
 .repo-rail {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   margin-top: 22px;
   border-top: 1px solid rgba(151, 222, 255, .13);
   border-bottom: 1px solid rgba(151, 222, 255, .13);
@@ -1519,10 +1526,8 @@ button {
   }
 
   .experience > .section-head {
-    position: sticky;
-    top: calc(var(--header) + 42px);
-    align-self: start;
-    z-index: 1;
+    position: relative;
+    z-index: 0;
   }
 }
 
@@ -1714,6 +1719,7 @@ button {
   }
 
   .timeline-meta,
+  .timeline-item h3,
   .timeline-item p,
   .timeline-item ul {
     grid-column: auto;
