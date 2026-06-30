@@ -12,5 +12,8 @@ python3 -m http.server 5173
 
 ## GitHub Pages
 
-Use the repository root as the Pages source. The site has no build step and all assets are repo-local.
+Pushing to `master` deploys the static site through `.github/workflows/deploy-pages.yml`.
 
+In GitHub repository settings, set Pages to **GitHub Actions** as the build and deployment source. The workflow packages only `index.html`, `styles.css`, `script.js`, `.nojekyll`, and `assets/` into `dist/`.
+
+Use `dev` for ongoing adjustments. Merge or fast-forward `dev` into `master` when a version is ready to publish.
