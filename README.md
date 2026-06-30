@@ -27,4 +27,6 @@ The workflow packages only `index.html`, `styles.css`, `script.js`, `.nojekyll`,
 
 Create a repository secret named `PAGES_DEPLOY_TOKEN` in `B0cz3k/portfolio`. It should contain a GitHub token with write access to `B0cz3k/B0cz3k.github.io`.
 
+If the workflow reports `Input required and not supplied: token`, the `PAGES_DEPLOY_TOKEN` secret is missing, empty, or named differently.
+
 In `B0cz3k/B0cz3k.github.io`, set GitHub Pages to deploy from the `gh-pages` branch.

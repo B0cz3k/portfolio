@@ -19,13 +19,22 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Build static site artifact
         run: bash scripts/build-pages.sh
 
+      - name: Validate deployment token
+        env:
+          PAGES_DEPLOY_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        run: |
+          if [ -z "$PAGES_DEPLOY_TOKEN" ]; then
+            echo "::error::Missing PAGES_DEPLOY_TOKEN. Add a repository secret in B0cz3k/portfolio with write access to B0cz3k/B0cz3k.github.io."
+            exit 1
+          fi
+
       - name: Checkout github.io repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: B0cz3k/B0cz3k.github.io
           token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
