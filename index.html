@@ -10,14 +10,18 @@
     <meta property="og:image" content="assets/agent-cockpit-hero.png">
     <title>Lukasz Borak - Software Engineer / Machine Learning</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="preload" href="assets/agent-cockpit-hero.png" as="image">
-    <link rel="preload" href="assets/project-lab-montage.png" as="image">
+    <link rel="preload" href="assets/agent-cockpit-hero.png" as="image" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div class="noise" aria-hidden="true"></div>
     <div class="scanline" aria-hidden="true"></div>
     <div class="cursor-aura" aria-hidden="true"></div>
+    <aside class="scroll-rail" aria-hidden="true">
+      <span class="rail-index">01</span>
+      <span class="rail-line"><span class="rail-fill"></span></span>
+      <span class="rail-index rail-current">Hero</span>
+    </aside>
 
     <header class="site-header" data-depth="-0.06">
       <a class="brand" href="#top" aria-label="Back to top">
@@ -25,6 +29,7 @@
         <span>Lukasz Borak</span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#mission">Mission</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#model-lab">ML Lab</a>
@@ -39,23 +44,23 @@
     </header>
 
     <main id="top">
-      <section class="hero section-band" aria-labelledby="hero-title">
-        <img class="hero-bg parallax" src="assets/agent-cockpit-hero.png" alt="" data-speed="0.18">
+      <section class="hero section-band scroll-scene" aria-labelledby="hero-title" data-scene="Hero">
+        <img class="hero-bg parallax" src="assets/agent-cockpit-hero.png" alt="" data-speed="0.18" fetchpriority="high" decoding="async">
         <canvas id="agent-canvas" aria-hidden="true"></canvas>
         <div class="hero-vignette" aria-hidden="true"></div>
         <div class="hero-content">
           <div class="hero-copy reveal">
             <h1 id="hero-title">Łukasz Borak</h1>
             <p class="hero-role">Software Engineer / Machine Learning</p>
-            <p class="hero-text">I build LLM workflows, agentic systems, and accessible ML products with the engineering discipline to move from prototype to production.</p>
+            <p class="hero-text">I build LLM workflows, agentic systems, CNNs, and accessible ML products with the engineering discipline to move from prototype to production.</p>
             <div class="hero-actions">
               <a class="button button-primary" href="#projects">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 6-6 1.4 1.4L8.8 11H19v2H8.8l3.6 3.6L11 18l-6-6Z"/></svg>
                 View Projects
               </a>
-              <a class="button button-ghost" href="#contact">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4V5Zm2 3.2V17h12V8.2l-6 4.6-6-4.6Zm.8-1.2 5.2 4 5.2-4H6.8Z"/></svg>
-                Contact
+              <a class="button button-ghost" href="#model-lab">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4V5Zm2 2v10h12V7H6Zm2 2h3v3H8V9Zm5 0h3v1h-3V9Zm0 3h3v1h-3v-1Zm-5 2h8v1H8v-1Z"/></svg>
+                Enter ML Lab
               </a>
             </div>
           </div>
@@ -109,7 +114,39 @@
         </a>
       </section>
 
-      <section class="experience section-pad" id="experience" aria-labelledby="experience-title">
+      <section class="mission section-pad scroll-scene" id="mission" aria-labelledby="mission-title" data-scene="Mission">
+        <div class="mission-sticky">
+          <div class="section-head reveal">
+            <h2 id="mission-title">Mission</h2>
+            <p>Engineering intelligence into real-world impact: agents, CNNs, systems, and the feedback loops that make prototypes production-worthy.</p>
+          </div>
+          <div class="mission-grid">
+            <article class="mission-card reveal" style="--card-accent: var(--cyan)">
+              <div class="mission-visual mission-agent" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <h3>AI Agents</h3>
+              <p>Agentic workflows, tool planning, memory, retrieval, and safer execution paths for useful automation.</p>
+            </article>
+            <article class="mission-card reveal" style="--card-accent: var(--magenta)">
+              <div class="mission-visual mission-cnn" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <h3>CNNs & CV</h3>
+              <p>Segmentation, embeddings, feature extraction, and visual understanding from Android pilots to research analysis.</p>
+            </article>
+            <article class="mission-card reveal" style="--card-accent: var(--green)">
+              <div class="mission-visual mission-system" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <h3>Systems</h3>
+              <p>Cloud-native demos, tests, reviews, RCA, REST integration, and production fixes that hold up under use.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="experience section-pad scroll-scene" id="experience" aria-labelledby="experience-title" data-scene="Experience">
         <div class="section-kicker" aria-hidden="true"></div>
         <div class="section-head reveal">
           <h2 id="experience-title">Experience</h2>
@@ -142,13 +179,13 @@
         </div>
       </section>
 
-      <section class="projects section-pad" id="projects" aria-labelledby="projects-title">
+      <section class="projects section-pad scroll-scene" id="projects" aria-labelledby="projects-title" data-scene="Projects">
         <div class="section-head reveal">
           <h2 id="projects-title">Selected Projects</h2>
           <p>CV case studies with the parts that matter: ownership, model choices, production surfaces, and user-facing impact.</p>
         </div>
         <div class="project-visual reveal">
-          <img src="assets/project-lab-montage.png" alt="Dark AI lab montage representing accessible healthcare, visual similarity research, and vector search.">
+          <img src="assets/project-lab-montage.png" alt="Dark AI lab montage representing accessible healthcare, visual similarity research, and vector search." loading="lazy" decoding="async">
           <div class="visual-caption">
             <span>Project lab</span>
             <small>Accessible ML, AI research, vector search</small>
@@ -214,7 +251,7 @@
         </div>
       </section>
 
-      <section class="model-lab section-pad" id="model-lab" aria-labelledby="model-title">
+      <section class="model-lab section-pad scroll-scene" id="model-lab" aria-labelledby="model-title" data-scene="ML Lab">
         <div class="section-head reveal">
           <h2 id="model-title">Model Lab</h2>
           <p>A portfolio signal for both modern agents and traditional machine learning: classic preprocessing, CNN feature extraction, segmentation, embeddings, and retrieval.</p>
@@ -302,7 +339,7 @@
         </div>
       </section>
 
-      <section class="stack section-pad" id="stack" aria-labelledby="stack-title">
+      <section class="stack section-pad scroll-scene" id="stack" aria-labelledby="stack-title" data-scene="Stack">
         <div class="section-head reveal">
           <h2 id="stack-title">Technical Stack</h2>
           <p>Tools I reach for across production engineering, applied ML, and AI systems.</p>
@@ -327,7 +364,7 @@
         </div>
       </section>
 
-      <section class="contact section-pad" id="contact" aria-labelledby="contact-title">
+      <section class="contact section-pad scroll-scene" id="contact" aria-labelledby="contact-title" data-scene="Contact">
         <div class="contact-panel reveal">
           <div>
             <h2 id="contact-title">Let's Build the Next System</h2>

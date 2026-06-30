@@ -6,13 +6,64 @@ const body = document.body;
 const aura = document.querySelector(".cursor-aura");
 const canvas = document.getElementById("agent-canvas");
 const ctx = canvas ? canvas.getContext("2d") : null;
+const heroScene = document.querySelector(".hero");
+const railFill = document.querySelector(".rail-fill");
+const railCurrent = document.querySelector(".rail-current");
+const railIndex = document.querySelector(".rail-index");
+const scenes = [...document.querySelectorAll(".scroll-scene")];
+const navLinks = [...document.querySelectorAll(".site-nav a")];
 
 let pointer = { x: window.innerWidth * 0.66, y: window.innerHeight * 0.38, active: false };
 let nodes = [];
 let rafId = 0;
+let scrollTicking = false;
+let canvasActive = false;
+let lastCanvasFrame = 0;
 
 function setViewportVars() {
-  root.style.setProperty("--scroll-y", String(window.scrollY));
+  const scrollTop = window.scrollY;
+  const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const pageProgress = Math.min(1, Math.max(0, scrollTop / maxScroll));
+  root.style.setProperty("--scroll-y", String(scrollTop));
+  root.style.setProperty("--scroll-progress", pageProgress.toFixed(4));
+
+  let activeScene = scenes[0];
+  let activeDistance = Number.POSITIVE_INFINITY;
+
+  for (const scene of scenes) {
+    const rect = scene.getBoundingClientRect();
+    const travel = Math.max(1, rect.height + window.innerHeight);
+    const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / travel));
+    scene.style.setProperty("--scene-progress", progress.toFixed(4));
+
+    const centerDistance = Math.abs(rect.top + rect.height / 2 - window.innerHeight / 2);
+    if (!activeScene || centerDistance < activeDistance) {
+      activeScene = scene;
+      activeDistance = centerDistance;
+    }
+  }
+
+  if (activeScene) {
+    const sceneName = activeScene.dataset.scene || "Scene";
+    const sceneNumber = `${String(scenes.indexOf(activeScene) + 1).padStart(2, "0")}`;
+    if (railCurrent) railCurrent.textContent = sceneName;
+    if (railIndex) railIndex.textContent = sceneNumber;
+    navLinks.forEach(link => {
+      const target = link.getAttribute("href")?.slice(1);
+      link.classList.toggle("active", target === activeScene.id);
+    });
+  }
+
+  if (railFill) railFill.style.height = `${pageProgress * 100}%`;
+}
+
+function requestScrollUpdate() {
+  if (scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(() => {
+    setViewportVars();
+    scrollTicking = false;
+  });
 }
 
 function handlePointer(event) {
@@ -30,7 +81,8 @@ function resizeCanvas() {
   canvas.style.height = `${window.innerHeight}px`;
   ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-  nodes = Array.from({ length: window.innerWidth < 720 ? 28 : 52 }, (_, index) => {
+  const nodeCount = window.innerWidth < 720 ? 18 : window.innerWidth < 1100 ? 30 : 42;
+  nodes = Array.from({ length: nodeCount }, (_, index) => {
     const band = index % 3;
     return {
       x: window.innerWidth * (0.45 + Math.random() * 0.46),
@@ -43,8 +95,17 @@ function resizeCanvas() {
   });
 }
 
-function drawAgentCanvas() {
-  if (!ctx || !canvas || prefersReducedMotion) return;
+function drawAgentCanvas(timestamp = 0) {
+  rafId = 0;
+  if (!ctx || !canvas || prefersReducedMotion || !canvasActive) return;
+
+  const targetFrameMs = window.innerWidth < 720 ? 66 : 33;
+  if (timestamp - lastCanvasFrame < targetFrameMs) {
+    rafId = requestAnimationFrame(drawAgentCanvas);
+    return;
+  }
+  lastCanvasFrame = timestamp;
+
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
   ctx.lineWidth = 1;
 
@@ -101,6 +162,36 @@ function drawAgentCanvas() {
   rafId = requestAnimationFrame(drawAgentCanvas);
 }
 
+function startCanvas() {
+  if (!ctx || prefersReducedMotion || rafId) return;
+  canvasActive = true;
+  rafId = requestAnimationFrame(drawAgentCanvas);
+}
+
+function stopCanvas() {
+  canvasActive = false;
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+    rafId = 0;
+  }
+}
+
+function setupCanvasVisibility() {
+  if (!heroScene || !ctx || prefersReducedMotion) return;
+  const observer = new IntersectionObserver(
+    entries => {
+      const isVisible = entries.some(entry => entry.isIntersecting);
+      if (isVisible) {
+        startCanvas();
+      } else {
+        stopCanvas();
+      }
+    },
+    { threshold: 0.02 }
+  );
+  observer.observe(heroScene);
+}
+
 function setupRevealObserver() {
   const reveals = document.querySelectorAll(".reveal");
   const observer = new IntersectionObserver(
@@ -141,7 +232,7 @@ for (const [index, tile] of document.querySelectorAll(".input-grid span").entrie
   tile.style.setProperty("--i", index + 1);
 }
 
-window.addEventListener("scroll", setViewportVars, { passive: true });
+window.addEventListener("scroll", requestScrollUpdate, { passive: true });
 window.addEventListener("pointermove", handlePointer, { passive: true });
 window.addEventListener("resize", () => {
   resizeCanvas();
@@ -152,10 +243,8 @@ setViewportVars();
 setupRevealObserver();
 setupModeButtons();
 resizeCanvas();
+setupCanvasVisibility();
 
-if (!prefersReducedMotion && ctx) {
-  cancelAnimationFrame(rafId);
-  drawAgentCanvas();
-} else if (aura) {
+if (prefersReducedMotion && aura) {
   aura.style.display = "none";
 }
