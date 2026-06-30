@@ -3,19 +3,346 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Lukasz Borak portfolio: software engineering, machine learning, LLM workflows, agentic systems, and accessible ML products.">
+    <meta name="description" content="Lukasz Borak portfolio: software engineering, machine learning, LLM workflows, agentic systems, computer vision, and accessible ML products.">
+    <meta name="theme-color" content="#030609">
+    <meta property="og:title" content="Lukasz Borak - Software Engineer / Machine Learning">
+    <meta property="og:description" content="AI agents, production ML, CNNs, vector search, accessible Android systems, cars, and music in one interactive portfolio.">
+    <meta property="og:image" content="assets/agent-cockpit-hero.png">
     <title>Lukasz Borak - Software Engineer / Machine Learning</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="assets/agent-cockpit-hero.png" as="image">
+    <link rel="preload" href="assets/project-lab-montage.png" as="image">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main>
-      <section class="shell-placeholder">
-        <h1>Lukasz Borak</h1>
-        <p>Software Engineer / Machine Learning</p>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="scanline" aria-hidden="true"></div>
+    <div class="cursor-aura" aria-hidden="true"></div>
+
+    <header class="site-header" data-depth="-0.06">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <span class="brand-mark">LB</span>
+        <span>Lukasz Borak</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#model-lab">ML Lab</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="icon-link" href="https://github.com/B0cz3k" target="_blank" rel="noreferrer" aria-label="GitHub profile">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2.2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.7.6-3.3-1.1-3.3-1.1-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.7-1.4-2.2-.2-4.5-1.1-4.5-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.5 4.9.4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0 0 12 2.2Z"/>
+        </svg>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero section-band" aria-labelledby="hero-title">
+        <img class="hero-bg parallax" src="assets/agent-cockpit-hero.png" alt="" data-speed="0.18">
+        <canvas id="agent-canvas" aria-hidden="true"></canvas>
+        <div class="hero-vignette" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="hero-copy reveal">
+            <h1 id="hero-title">Łukasz Borak</h1>
+            <p class="hero-role">Software Engineer / Machine Learning</p>
+            <p class="hero-text">I build LLM workflows, agentic systems, and accessible ML products with the engineering discipline to move from prototype to production.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 6-6 1.4 1.4L8.8 11H19v2H8.8l3.6 3.6L11 18l-6-6Z"/></svg>
+                View Projects
+              </a>
+              <a class="button button-ghost" href="#contact">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4V5Zm2 3.2V17h12V8.2l-6 4.6-6-4.6Zm.8-1.2 5.2 4 5.2-4H6.8Z"/></svg>
+                Contact
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-console reveal" aria-label="Live portfolio controls">
+            <div class="console-top">
+              <span>agent.run</span>
+              <span class="console-dot"></span>
+            </div>
+            <div class="agent-orbit" aria-hidden="true">
+              <span class="orbit-core">AI</span>
+              <span class="orbit-node node-a">Memory</span>
+              <span class="orbit-node node-b">Tools</span>
+              <span class="orbit-node node-c">CNN</span>
+              <span class="orbit-node node-d">Search</span>
+            </div>
+            <div class="telemetry">
+              <span>3x processing time reduction</span>
+              <span>Private AWS agent demo</span>
+              <span>Tests, PR review, RCA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="signal-strip reveal" aria-label="Portfolio focus areas">
+          <article>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3Zm0 2.3 5.7 3.2v6.9L12 18.7l-5.7-3.3V8.5L12 5.3Zm0 3.2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/></svg>
+            <span>AI Agents</span>
+            <small>Plan. Act. Learn.</small>
+          </article>
+          <article>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4ZM4 13h7v7H4v-7Zm9 0h7v7h-7v-7Z"/></svg>
+            <span>CNNs & CV</span>
+            <small>Segment. Embed. Detect.</small>
+          </article>
+          <article>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v4H5V4Zm0 6h14v4H5v-4Zm0 6h14v4H5v-4Zm2-10v1h10V6H7Zm0 6v1h10v-1H7Zm0 6v1h10v-1H7Z"/></svg>
+            <span>Systems</span>
+            <small>Build. Deploy. Fix.</small>
+          </article>
+          <article>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13h2v6H4v-6Zm4-7h2v13H8V6Zm4 4h2v9h-2v-9Zm4-6h2v15h-2V4Zm4 8h2v7h-2v-7Z"/></svg>
+            <span>Music</span>
+            <small>Patterns. Timing. Flow.</small>
+          </article>
+        </div>
+
+        <a class="scroll-cue" href="#experience" aria-label="Scroll to experience">
+          <span>Scroll</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17-7-7 1.4-1.4L12 14.2l5.6-5.6L19 10l-7 7Z"/></svg>
+        </a>
+      </section>
+
+      <section class="experience section-pad" id="experience" aria-labelledby="experience-title">
+        <div class="section-kicker" aria-hidden="true"></div>
+        <div class="section-head reveal">
+          <h2 id="experience-title">Experience</h2>
+          <p>Production LLM systems, cross-functional delivery, and cloud-native agent demos with measurable operational impact.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-rail" aria-hidden="true"></div>
+          <article class="timeline-item reveal">
+            <div class="time-marker"></div>
+            <div class="timeline-meta">May 2025 - Present / Poznań, Poland</div>
+            <h3>Data Scientist, Capgemini</h3>
+            <p>Leading a small team through proof-of-concept and MVP automation solutions built on LLM-driven and multi-agent workflows.</p>
+            <ul>
+              <li>Moved LLM functionality from pilot to production while reducing end-to-end processing time by 3x and improving accuracy.</li>
+              <li>Implemented tests, reviewed pull requests, and improved regression coverage for a production-deployed LLM application.</li>
+              <li>Diagnosed stakeholder-reported defects through root cause analysis and shipped fixes for expected production behavior.</li>
+              <li>Designed a private agentic-system demo on AWS EC2 inside a private VPC with NAT Gateway and VPN endpoint connectivity.</li>
+            </ul>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="time-marker time-marker-muted"></div>
+            <div class="timeline-meta">2022 - 2026 / Poznań University of Technology</div>
+            <h3>B.Sc. in Artificial Intelligence</h3>
+            <p>Built the foundation across Python, Java, algorithms, ML, deep learning, NLP, computer vision, Android, and applied research.</p>
+            <ul>
+              <li>Co-authored work on AI-generated versus web image inspiration, scheduled for publication in 2026.</li>
+              <li>Built accessible Android research software, embedding search systems, and interpretable computer-vision experiments.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="projects section-pad" id="projects" aria-labelledby="projects-title">
+        <div class="project-visual reveal">
+          <img src="assets/project-lab-montage.png" alt="Dark AI lab montage representing accessible healthcare, visual similarity research, and vector search.">
+          <div class="visual-caption">
+            <span>Project lab</span>
+            <small>Accessible ML, AI research, vector search</small>
+          </div>
+        </div>
+        <div class="section-head reveal">
+          <h2 id="projects-title">Selected Projects</h2>
+          <p>CV case studies with the parts that matter: ownership, model choices, production surfaces, and user-facing impact.</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card reveal">
+            <div class="project-index">01</div>
+            <h3>Patient Experiences</h3>
+            <p>Accessible Java/Android healthcare survey system with simplified tablet flows, CameraX capture, and MobileSAM image segmentation through ONNX Runtime.</p>
+            <div class="tags">
+              <span>Android</span>
+              <span>CameraX</span>
+              <span>MobileSAM</span>
+              <span>ONNX</span>
+            </div>
+            <a href="https://github.com/B0cz3k" target="_blank" rel="noreferrer">View GitHub profile</a>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-index">02</div>
+            <h3>AI'nspired</h3>
+            <p>Research comparing AI-generated, web-sourced, and original images using DINOv2 embeddings, cosine similarity, patch-wise similarity, and attention visualizations.</p>
+            <div class="tags">
+              <span>DINOv2</span>
+              <span>Embeddings</span>
+              <span>Attention maps</span>
+              <span>Research</span>
+            </div>
+            <a href="https://github.com/B0cz3k" target="_blank" rel="noreferrer">View GitHub profile</a>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-index">03</div>
+            <h3>Embedding Search Engine</h3>
+            <p>End-to-end vector search with document upload, embedding generation, Qdrant indexing, similarity search, and CoSQA fine-tuning for semantic retrieval.</p>
+            <div class="tags">
+              <span>Qdrant</span>
+              <span>CoSQA</span>
+              <span>Vector DB</span>
+              <span>Retrieval</span>
+            </div>
+            <a href="https://github.com/B0cz3k" target="_blank" rel="noreferrer">View GitHub profile</a>
+          </article>
+        </div>
+
+        <div class="repo-rail reveal" aria-label="Public project links">
+          <a href="https://github.com/B0cz3k/online_pdf_chatbot" target="_blank" rel="noreferrer">
+            <span>Online PDF Chatbot</span>
+            <small>LLM document assistant</small>
+          </a>
+          <a href="https://github.com/B0cz3k/jetbot" target="_blank" rel="noreferrer">
+            <span>JetBot</span>
+            <small>Robotics and vision</small>
+          </a>
+          <a href="https://github.com/B0cz3k/evolutionary_computing" target="_blank" rel="noreferrer">
+            <span>Evolutionary Computing</span>
+            <small>Traditional optimization</small>
+          </a>
+          <a href="https://github.com/B0cz3k/pytorch_first_steps" target="_blank" rel="noreferrer">
+            <span>PyTorch First Steps</span>
+            <small>Deep learning foundations</small>
+          </a>
+        </div>
+      </section>
+
+      <section class="model-lab section-pad" id="model-lab" aria-labelledby="model-title">
+        <div class="section-head reveal">
+          <h2 id="model-title">Model Lab</h2>
+          <p>A portfolio signal for both modern agents and traditional machine learning: classic preprocessing, CNN feature extraction, segmentation, embeddings, and retrieval.</p>
+        </div>
+        <div class="lab-layout">
+          <div class="cnn-stage reveal" aria-label="Animated CNN and embedding pipeline">
+            <div class="matrix input-grid" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="conv-stack" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="embedding-vector" aria-hidden="true">
+              <span style="--h: 32%"></span>
+              <span style="--h: 72%"></span>
+              <span style="--h: 46%"></span>
+              <span style="--h: 90%"></span>
+              <span style="--h: 58%"></span>
+              <span style="--h: 80%"></span>
+              <span style="--h: 38%"></span>
+              <span style="--h: 65%"></span>
+              <span style="--h: 51%"></span>
+              <span style="--h: 86%"></span>
+            </div>
+            <div class="retrieval-core" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="lab-steps">
+            <article class="lab-step reveal">
+              <span>01</span>
+              <h3>Structured ML</h3>
+              <p>NumPy, pandas, scikit-learn, feature engineering, model evaluation, and practical baselines before complexity.</p>
+            </article>
+            <article class="lab-step reveal">
+              <span>02</span>
+              <h3>CNNs & Computer Vision</h3>
+              <p>Deep visual representations, DINOv2 embeddings, MobileSAM segmentation, attention maps, and ONNX Runtime deployment.</p>
+            </article>
+            <article class="lab-step reveal">
+              <span>03</span>
+              <h3>Embeddings & Search</h3>
+              <p>Cosine similarity, vector indexing, Qdrant-backed retrieval, and dataset-specific fine-tuning with CoSQA.</p>
+            </article>
+            <article class="lab-step reveal">
+              <span>04</span>
+              <h3>Agentic Systems</h3>
+              <p>LangChain, LangGraph, tool use, memory, evaluation loops, and deployment patterns for useful automation.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="hobbies section-pad" aria-labelledby="hobbies-title">
+        <div class="section-head reveal">
+          <h2 id="hobbies-title">Personality Layer</h2>
+          <p>Cars, music, and computers show up as motion, rhythm, controls, and the way the interface feels under your cursor.</p>
+        </div>
+        <div class="hobby-console reveal">
+          <div class="mode-panel">
+            <h3>Drive Mode</h3>
+            <p id="mode-copy">Agent route planning: calm, precise, and ready to accelerate.</p>
+            <div class="mode-buttons" role="group" aria-label="Portfolio visual mode">
+              <button class="mode-button active" type="button" data-mode="agent">Agent</button>
+              <button class="mode-button" type="button" data-mode="road">Road</button>
+              <button class="mode-button" type="button" data-mode="studio">Studio</button>
+            </div>
+          </div>
+          <div class="audio-panel" aria-label="Animated music visualizer">
+            <div class="visualizer">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+            </div>
+            <div class="track-line">
+              <span>midnight-run.wav</span>
+              <small>cars / code / music</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stack section-pad" id="stack" aria-labelledby="stack-title">
+        <div class="section-head reveal">
+          <h2 id="stack-title">Technical Stack</h2>
+          <p>Tools I reach for across production engineering, applied ML, and AI systems.</p>
+        </div>
+        <div class="stack-grid">
+          <article class="stack-group reveal">
+            <h3>Programming</h3>
+            <p>Python, Java</p>
+          </article>
+          <article class="stack-group reveal">
+            <h3>Engineering</h3>
+            <p>Android, REST API integration, Git, testing, code review, data structures and algorithms</p>
+          </article>
+          <article class="stack-group reveal">
+            <h3>ML and AI</h3>
+            <p>PyTorch, Transformers, scikit-learn, NumPy, pandas, LangChain, LangGraph, deep learning, NLP, CNNs, computer vision, embeddings, image segmentation</p>
+          </article>
+          <article class="stack-group reveal">
+            <h3>Cloud and Platforms</h3>
+            <p>AWS EC2, VPC, NAT Gateway, VPN connectivity, AWS Bedrock, Google Compute Engine, Azure AI Foundry, Docker, DVC, Qdrant, ONNX Runtime, CameraX</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact section-pad" id="contact" aria-labelledby="contact-title">
+        <div class="contact-panel reveal">
+          <div>
+            <h2 id="contact-title">Let's Build the Next System</h2>
+            <p>Interested in ML systems, agent workflows, computer vision, accessible technology, and production reliability.</p>
+          </div>
+          <div class="contact-links">
+            <a href="mailto:lukasz.borak03@gmail.com">lukasz.borak03@gmail.com</a>
+            <a href="https://linkedin.com/in/lukasz-borak-lkb" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://github.com/B0cz3k" target="_blank" rel="noreferrer">GitHub</a>
+            <span>Poznań, Poland</span>
+          </div>
+        </div>
       </section>
     </main>
+
     <script src="script.js"></script>
   </body>
 </html>
-
