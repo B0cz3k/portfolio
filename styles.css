@@ -500,18 +500,7 @@ button {
 }
 
 .scroll-cue {
-  position: absolute;
-  z-index: 5;
-  left: 50%;
-  bottom: 24px;
-  display: grid;
-  justify-items: center;
-  gap: 2px;
-  color: rgba(244, 247, 251, .56);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 10px;
-  text-transform: uppercase;
-  transform: translateX(-50%);
+  display: none;
 }
 
 .scroll-cue svg {
@@ -665,11 +654,12 @@ button {
   background:
     linear-gradient(180deg, rgba(7, 16, 22, .54), transparent 38%),
     radial-gradient(circle at 65% 20%, rgba(255, 64, 85, .08), transparent 28rem);
+  padding-top: clamp(70px, 8vw, 104px);
 }
 
 .project-visual {
   width: min(var(--max), 100%);
-  margin: 0 auto 72px;
+  margin: 0 auto 56px;
   position: relative;
   border: 1px solid rgba(151, 222, 255, .18);
   overflow: hidden;
@@ -1194,6 +1184,7 @@ button {
   }
 
   .hero {
+    display: block;
     align-items: start;
     padding-top: calc(var(--header) + 48px);
   }
